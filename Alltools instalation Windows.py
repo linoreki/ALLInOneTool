@@ -2,6 +2,7 @@ import subprocess
 import time
 import os 
 import platform
+import webbrowser
 
 def execute(command:str):
     return subprocess.run(command, shell=True)
@@ -95,8 +96,9 @@ def menu():
     print("2. Instalar Metasploit")
     print("3. Menú de ejecución")
     print("4. Salir")
-
-    opcion = int(input("Por favor, elige una opción (1-4): "))
+    print("5.instalar gem (necesario para instalar aplicaciones)")
+    
+    opcion = int(input("Por favor, elige una opción (1-5): "))
 
     if opcion == 1:
         instalar_aplicaciones()
@@ -108,6 +110,12 @@ def menu():
         print("¡Hasta luego!")
         time.sleep(2)
         exit()
+    elif opcion == 5:
+        url = "https://rubyinstaller.org/"
+        webbrowser.open(url)
+        time.sleep(2)
+        exit() 
+       
     else:
         print("Opción incorrecta. Por favor, elige una opción válida.")
         menu()
