@@ -1,6 +1,7 @@
 import subprocess
 import time
 import os 
+import platform
 
 hacker_art = """
   _   _      _ _         __        __         _     _ _ 
@@ -12,13 +13,7 @@ hacker_art = """
 """
 
 
-def instalar_aplicaciones():
-
-    
-    
-    subprocess.run(["sudo", "gem", "install", "wpscan"])
-    subprocess.run(["sudo", "snap", "install", "searchsploit"])
-    subprocess.run(["sudo", "apt", "install", "nmap", "-y"])
+def instalar_msfconsole():
     subprocess.run(["sudo","apt","install","ruby"])
     subprocess.run(["sudo", "apt-get", "install", "build-essential", "zlib1g", "zlib1g-dev", "libxml2", "libxml2-dev", "libxslt-dev", "locate", "libreadline6-dev", "libcurl4-openssl-dev", "git-core", "autoconf", "curl", "postgresql", "postgresql-contrib", "libpq-dev", "libapr1", "libaprutil1", "libsvn1", "libpcap-dev","ruby" "-y"])
     subprocess.run(["git", "clone", "https://github.com/rapid7/metasploit-framework.git"])
@@ -35,6 +30,15 @@ def instalar_aplicaciones():
     subprocess.run(["sudo", "service", "postgresql", "start"])
     subprocess.run([ "msfdb", "init"])
 
+def instalar_aplicaciones():
+
+    sistema = platform.system()
+    print(sistema)
+    
+    
+    subprocess.run(["sudo", "gem", "install", "wpscan"])
+    subprocess.run(["sudo", "snap", "install", "searchsploit"])
+    subprocess.run(["sudo", "apt", "install", "nmap", "-y"])
 
     #subprocess.run(["wget http://downloads.metasploit.com/data/releases/metasploit-latest-linux-x64-installer.run"])
     # subprocess.run(["sudo chmod +x ./metasploit-latest-linux-x64-installer.run"])
