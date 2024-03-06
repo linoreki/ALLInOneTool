@@ -17,11 +17,6 @@ hacker_art = """
 """
 
 def instalar_msfconsole():
-    print("Instalando Ruby...")
-    if platform.system() == "Linux":
-        execute("sudo apt install ruby -y")
-    elif platform.system() == "Windows":
-        execute("choco install ruby -y")
 
     print("Instalando MSFConsole...")
     execute("choco install metasploit-framework -y") if platform.system() == "Windows" else execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
@@ -36,6 +31,12 @@ def instalar_msfconsole():
     execute( "msfdb init")
 
 def instalar_simple():
+        print("Instalando Ruby...")
+    if platform.system() == "Linux":
+        execute("sudo apt install ruby -y")
+    elif platform.system() == "Windows":
+        execute("choco install ruby -y")
+
     print("Instalando WPScan...")
     execute("gem install wpscan")
     execute("wpscan --update --disable-tls-checks")
