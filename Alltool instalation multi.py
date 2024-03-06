@@ -32,10 +32,11 @@ def instalar_msfconsole():
 
 def instalar_simple():
         print("Instalando Ruby...")
-    if platform.system() == "Linux":
-        execute("sudo apt install ruby -y")
-    elif platform.system() == "Windows":
+    if platform.system() == "Windows":
         execute("choco install ruby -y")
+    elif platform.system() == "Linux":
+        execute("sudo apt install ruby -y")
+
 
     print("Instalando WPScan...")
     execute("gem install wpscan")
