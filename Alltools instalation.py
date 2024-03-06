@@ -66,7 +66,7 @@ def ejecutar_aplicacion_4():
 
 def menu_ejecuccion():
 
-    execute(cls)
+    execute("clear")
     print(hacker_art)  
     print("Bienvenido al Menú Hacker:")
     print("1. wpscan ")
