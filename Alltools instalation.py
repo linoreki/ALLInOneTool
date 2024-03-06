@@ -42,7 +42,7 @@ def instalar_linux():
 def instalar_aplicaciones():
 
     sistema = platform.system()
-    if sistema == Linux:
+    if sistema == "Linux":
         instalar_linux()
 
 def ejecutar_aplicacion_1():
