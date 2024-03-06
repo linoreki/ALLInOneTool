@@ -41,12 +41,17 @@ def instalar_simple():
 def instalar_linux():
     instalar_simple()
 
-# def instalar_windows():
+def instalar_windows():
 
 def instalar_aplicaciones():
     sistema = platform.system()
     if sistema == "Linux":
         instalar_linux()
+    elif sistema == "Windows":
+    instalar_windows()
+
+    else:
+        print("El sistema operativo no es compatible con este script.")
 
 def ejecutar_aplicacion_1():
     Url = input("ingrese la url la cual quieres vulnerar: ")
@@ -58,8 +63,8 @@ def ejecutar_aplicacion_2():
     execute("searchsploit")
 
 def ejecutar_aplicacion_3():
-    
-    execute("nmap -help")
+    ip = input("ingrese la ip cual quieres investigar: ")
+    execute(f"nmap -p- --open {ip} -sS --min-rate 5000 -v -n -Pn")
 
 def ejecutar_aplicacion_4():
     
