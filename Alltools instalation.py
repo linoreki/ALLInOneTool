@@ -97,8 +97,8 @@ def menu_ejecuccion():
         time.sleep(2)
         exit()
     elif opcion >= 4:
-    print("opcion incorrecta por favor inserte un valor permitido")
-    menu_ejecuccion
+        print("opcion incorrecta por favor inserte un valor permitido")
+        menu_ejecuccion
 
 def menu():
    
