@@ -57,7 +57,8 @@ def ejecutar_aplicacion_2():
     execute("searchsploit")
 
 def ejecutar_aplicacion_3():
-    execute("nmap -h")
+    ip = input("ingrese la ip cual quieres investigar: ")
+    execute(f"nmap -p- --open {ip} -sS --min-rate 5000 -v -n -Pn")
 
 def ejecutar_aplicacion_4():
     execute("msfconsole")
