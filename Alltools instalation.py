@@ -44,7 +44,6 @@ def instalar_linux():
 # def instalar_windows():
 
 def instalar_aplicaciones():
-
     sistema = platform.system()
     if sistema == "Linux":
         instalar_linux()
@@ -65,22 +64,53 @@ def ejecutar_aplicacion_4():
     
     execute("msfconsole")
 
+def menu_ejecuccion():
 
+    execute(cls)
+    print(hacker_art)  
+    print("Bienvenido al Menú Hacker:")
+    print("1. wpscan ")
+    print("2. searchsploit ")
+    print("3. nmap")
+    print("4. metasploit")
+    print("5. Salir")
+    
+    opcion = int(input("Por favor, elige una opción (1-4): "))  
+    if opcion == 1:
+        ejecutar_aplicacion_1()
+        return
+    
+    elif opcion == 2:
+        ejecutar_aplicacion_2()
+        return
+    
+    elif opcion == 3:
+        ejecutar_aplicacion_3
+        return
+        
+    elif opcion == 4:
+         ejecutar_aplicacion_4
+         return
+    
+    elif opcion == 5:
+        print("¡Hasta luego!")
+        time.sleep(2)
+        exit()
+    elif opcion >= 4:
+    print("opcion incorrecta por favor inserte un valor permitido")
+    menu_ejecuccion
 
 def menu():
    
     print(hacker_art)
     
     print("Bienvenido al Menú Hacker:")
-    print("1. Instalar TODAS las aplicación 1")
+    print("1. Instalar TODAS las aplicación")
     print("2. instalar metasploit (era compleja)")
-    print("3. Ejecutar aplicación 1")
-    print("4. Ejecutar aplicación 2")
-    print("5. Ejecutar aplicación 3")
-    print("6. Ejecutar aplicación 4")
-    print("7. Salir")
+    print("3. Menu de ejecucion")
+    print("4. Salir")
 
-    opcion = int(input("Por favor, elige una opción (1-7): "))
+    opcion = int(input("Por favor, elige una opción (1-4): "))
 
     
     if opcion == 1:
@@ -92,27 +122,15 @@ def menu():
         return
     
     elif opcion == 3:
-        ejecutar_aplicacion_1()
+        menu_ejecuccion()
         return
     
     elif opcion == 4:
-        ejecutar_aplicacion_2()
-        return
-    
-    elif opcion == 5:
-        ejecutar_aplicacion_3()
-        return
-    
-    elif opcion == 6:
-        ejecutar_aplicacion_4()
-        return
-    
-    elif opcion == 7:
         print("¡Hasta luego!")
         time.sleep(2)
         exit()
     
-    elif opcion >= 7:
+    elif opcion >= 4:
         print("opcion incorrecta por favor inserte un valor permitido")
         menu()
 
