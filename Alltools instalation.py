@@ -75,7 +75,7 @@ def menu_ejecuccion():
     print("4. metasploit")
     print("5. Salir")
     
-    opcion = int(input("Por favor, elige una opción (1-4): "))  
+    opcion = int(input("Por favor, elige una opción (1-5): "))  
     if opcion == 1:
         ejecutar_aplicacion_1()
         return
@@ -96,7 +96,7 @@ def menu_ejecuccion():
         print("¡Hasta luego!")
         time.sleep(2)
         exit()
-    elif opcion >= 4:
+    elif opcion >= 5:
         print("opcion incorrecta por favor inserte un valor permitido")
         menu_ejecuccion
 
