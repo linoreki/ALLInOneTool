@@ -65,7 +65,7 @@ def ejecutar_aplicacion_4():
     
     execute("msfconsole")
 
-def menu_ejecuccion():
+def menu_ejecucion():
 
     execute("clear")
     print(hacker_art)  
@@ -99,16 +99,16 @@ def menu_ejecuccion():
         exit()
     elif opcion >= 5:
         print("opcion incorrecta por favor inserte un valor permitido")
-        menu_ejecuccion
+        menu_ejecucion()
 
-def menu():
+def main():
    
     print(hacker_art)
     
     print("Bienvenido al Menú Hacker:")
     print("1. Instalar TODAS las aplicación")
     print("2. instalar metasploit (era compleja)")
-    print("3. Menu de ejecucion")
+    print("3. main de ejecucion")
     print("4. Salir")
 
     opcion = int(input("Por favor, elige una opción (1-4): "))
@@ -123,7 +123,7 @@ def menu():
         return
     
     elif opcion == 3:
-        menu_ejecuccion()
+        menu_ejecucion()
         return
     
     elif opcion == 4:
@@ -133,12 +133,7 @@ def menu():
     
     elif opcion >= 4:
         print("opcion incorrecta por favor inserte un valor permitido")
-        menu()
-
-
-def main():
-    menu()
-
+        main()
 
 if __name__ == "__main__":
     main()

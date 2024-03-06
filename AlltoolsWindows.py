@@ -89,7 +89,7 @@ def menu_ejecucion():
         print("Opción incorrecta. Por favor, elige una opción válida.")
         menu_ejecucion()
 
-def menu():
+def main():
     print(hacker_art)
     print("Bienvenido al Menú Hacker:")
     print("1. Instalar todas las aplicaciones")
@@ -118,10 +118,7 @@ def menu():
        
     else:
         print("Opción incorrecta. Por favor, elige una opción válida.")
-        menu()
-
-def main():
-    menu()
+        main()
 
 if __name__ == "__main__":
     main()
