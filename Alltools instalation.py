@@ -17,31 +17,31 @@ hacker_art = """
 
 
 def instalar_msfconsole():
-    subprocess.run(["sudo apt install ruby"])
-    subprocess.run(["sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y"])
-    subprocess.run(["git clone https://github.com/rapid7/metasploit-framework.git"])
+    execute("sudo apt install ruby")
+    execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
+    execute("git clone https://github.com/rapid7/metasploit-framework.git")
     os.chdir(f"{os.getcwd()}/metasploit-framework/")
-    subprocess.run(["sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'"])
-    subprocess.run(["sudo gem install bundler -v 2.4.22"])
-    subprocess.run(["sudo apt-get install ruby-full build-essential"])
-    subprocess.run(["bundle install"])
-    subprocess.run(["sudo gem install mini_portile2 -v 2.8.4"])
-    subprocess.run(["sudo service postgresql start"])
-    subprocess.run([ "msfdb init"])
+    execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
+    execute("sudo gem install bundler -v 2.4.22")
+    execute("sudo apt-get install ruby-full build-essential")
+    execute("bundle install")
+    execute("sudo gem install mini_portile2 -v 2.8.4")
+    execute("sudo service postgresql start")
+    execute( "msfdb init")
 
 
 def instalar_simple():
-    subprocess.run(["sudo apt update"])
-    subprocess.run(["sudo gem install wpscan"])
-    subprocess.run(["sudo snap install searchsploit"])
-    subprocess.run(["sudo apt install nmap -y"])
-    subprocess.run(["sudo snap install metasploit-framework"])
+    execute("sudo apt update")
+    execute("sudo gem install wpscan")
+    execute("sudo snap install searchsploit")
+    execute("sudo apt install nmap -y")
+    execute("sudo snap install metasploit-framework")
 
 
 def instalar_linux():
     instalar_simple()
 
-def instalar_windows():
+# def instalar_windows():
 
 def instalar_aplicaciones():
 
@@ -51,19 +51,19 @@ def instalar_aplicaciones():
 
 def ejecutar_aplicacion_1():
     
-    subprocess.run(["wpscan -hh"])
+    execute("wpscan -hh")
 
 def ejecutar_aplicacion_2():
     
-    subprocess.run(["searchsploit"])
+    execute("searchsploit")
 
 def ejecutar_aplicacion_3():
     
-    subprocess.run(["nmap -help"])
+    execute("nmap -help")
 
 def ejecutar_aplicacion_4():
     
-    subprocess.run(["msfconsole"])
+    execute("msfconsole")
 
 
 
