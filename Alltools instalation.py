@@ -41,7 +41,7 @@ def instalar_simple():
 def instalar_linux():
     instalar_simple()
 
-def instalar_windows():
+# def instalar_windows():
 
 def instalar_aplicaciones():
 
