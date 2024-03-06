@@ -101,7 +101,7 @@ def menu():
     print("2. Instalar Metasploit")
     print("3. Menú de ejecución")
     print("4. Salir")
-    print("5. Instalar gem (necesario para instalar aplicaciones)")
+    print("5. Instalar gem manualmente")
     
     opcion = int(input("Por favor, elige una opción (1-5): "))
 
