@@ -49,8 +49,9 @@ def instalar_aplicaciones():
         instalar_linux()
 
 def ejecutar_aplicacion_1():
+    Url = input("ingrese la url la cual quieres vulnerar: ")
+    execute(f"wpscan --url {Url}")
     
-    execute("wpscan -hh")
 
 def ejecutar_aplicacion_2():
     
