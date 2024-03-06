@@ -17,7 +17,6 @@ hacker_art = """
 """
 
 def instalar_msfconsole():
-
     print("Instalando MSFConsole...")
     execute("choco install metasploit-framework -y") if platform.system() == "Windows" else execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
     execute("git clone https://github.com/rapid7/metasploit-framework.git")
@@ -31,10 +30,11 @@ def instalar_msfconsole():
     execute( "msfdb init")
 
 def instalar_simple():
-        print("Instalando Ruby...")
-    if platform.system() == "Windows":
+    sistema = platform.system()
+    print("Instalando Ruby...")
+    if sistema == "Windows":
         execute("choco install ruby -y")
-    elif platform.system() == "Linux":
+    elif sistema == "Linux":
         execute("sudo apt install ruby -y")
 
 
@@ -49,11 +49,13 @@ def instalar_simple():
     execute("choco install nmap -y") if platform.system() == "Windows" else execute("sudo apt install nmap -y")
 
 def instalar_aplicaciones():
-    if platform.system() == "Linux":
+    sistema = platform.system()
+    if sistema == "Linux":
         instalar_simple()
-    elif platform.system() == "Windows":
         instalar_msfconsole()
+    elif sistema == "Windows":
         instalar_simple()
+        instalar_msfconsole()
 
 def ejecutar_aplicacion_1():
     Url = input("Ingrese la URL que desea vulnerar: ")
@@ -128,6 +130,7 @@ def menu():
 
 def main():
     menu()
-
+    
 if __name__ == "__main__":
     main()
+    sistema = platform.system()
