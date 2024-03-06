@@ -4,10 +4,11 @@ import os
 import platform
 import webbrowser
 
-def execute(command:str):
+# Function to execute shell commands
+def execute(command: str):
     return subprocess.run(command, shell=True)
 
-
+# ASCII art representing the script's theme
 hacker_art = """
  █████╗ ██╗     ██╗           ██╗███╗   ██╗       ██████╗ ███╗   ██╗███████╗    ████████╗ ██████╗  ██████╗ ██╗     
 ██╔══██╗██║     ██║           ██║████╗  ██║      ██╔═══██╗████╗  ██║██╔════╝    ╚══██╔══╝██╔═══██╗██╔═══██╗██║     
@@ -15,111 +16,123 @@ hacker_art = """
 ██╔══██║██║     ██║     ╚════╝██║██║╚██╗██║╚════╝██║   ██║██║╚██╗██║██╔══╝         ██║   ██║   ██║██║   ██║██║     
 ██║  ██║███████╗███████╗      ██║██║ ╚████║      ╚██████╔╝██║ ╚████║███████╗       ██║   ╚██████╔╝╚██████╔╝███████╗
 ╚═╝  ╚═╝╚══════╝╚══════╝      ╚═╝╚═╝  ╚═══╝       ╚═════╝ ╚═╝  ╚═══╝╚══════╝       ╚═╝    ╚═════╝  ╚═════╝ ╚══════╝
+
 """
 
-def instalar_msfconsole():
-    print("Instalando Ruby...")
+# Function to install Metasploit on Windows
+def install_msfconsole():
+    print("Installing Ruby...")
     execute("choco install ruby -y")
 
-    print("Instalando MSFConsole...")
+    print("Installing MSFConsole...")
     execute("choco install metasploit-framework -y")
 
-    print("Iniciando PostgreSQL...")
+    print("Starting PostgreSQL...")
     execute("Start-Service postgresql-x64-13")
 
-def instalar_simple():
-    print("Instalando WPScan...")
+# Function to install a set of applications on Windows
+def install_simple():
+    print("Installing WPScan...")
     execute("gem install wpscan")
     execute("wpscan --update --disable-tls-checks")
 
-    print("Instalando SearchSploit...")
+    print("Installing SearchSploit...")
     execute("gem install searchsploit")
 
-    print("Instalando Nmap...")
+    print("Installing Nmap...")
     execute("choco install nmap -y")
 
-def instalar_windows():
-    instalar_simple()
-    instalar_msfconsole()
+# Function to install applications on Windows
+def install_windows():
+    install_simple()
+    install_msfconsole()
 
-def instalar_aplicaciones():
-    sistema = platform.system()
-    if sistema == "Windows":
-        instalar_windows()
+# Function to install applications based on the operating system
+def install_applications():
+    system = platform.system()
+    if system == "Windows":
+        install_windows()
     else:
-        print("El sistema operativo no es compatible con este script.")
+        print("The operating system is not compatible with this script.")
 
-def ejecutar_aplicacion_1():
-    Url = input("ingrese la url la cual quieres vulnerar: ")
-    execute(f"wpscan --url {Url} --random-user-agent --disable-tls-checks")
+# Function to execute WPScan on a specified URL
+def execute_application_1():
+    url = input("Enter the URL you want to scan: ")
+    execute(f"wpscan --url {url} --random-user-agent --disable-tls-checks")
 
-def ejecutar_aplicacion_2():
+# Function to execute SearchSploit
+def execute_application_2():
     execute("searchsploit")
 
-def ejecutar_aplicacion_3():
-    ip = input("ingrese la ip cual quieres investigar: ")
+# Function to execute Nmap on a specified IP
+def execute_application_3():
+    ip = input("Enter the IP you want to investigate: ")
     execute(f"nmap -p- --open {ip} -sS --min-rate 5000 -v -n -Pn")
 
-def ejecutar_aplicacion_4():
+# Function to execute MSFConsole
+def execute_application_4():
     execute("msfconsole")
 
-def menu_ejecucion():
+# Function for the main execution menu
+def execution_menu():
     print(hacker_art)  
-    print("Bienvenido al Menú Hacker:")
+    print("Welcome to the Hacker Menu:")
     print("1. WPScan")
     print("2. SearchSploit")
     print("3. Nmap")
     print("4. Metasploit")
-    print("5. Salir")
+    print("5. Exit")
     
-    opcion = int(input("Por favor, elige una opción (1-5): "))  
+    option = int(input("Please choose an option (1-5): "))  
 
-    if opcion == 1:
-        ejecutar_aplicacion_1()
-    elif opcion == 2:
-        ejecutar_aplicacion_2()
-    elif opcion == 3:
-        ejecutar_aplicacion_3()
-    elif opcion == 4:
-        ejecutar_aplicacion_4()
-    elif opcion == 5:
-        print("¡Hasta luego!")
+    if option == 1:
+        execute_application_1()
+    elif option == 2:
+        execute_application_2()
+    elif option == 3:
+        execute_application_3()
+    elif option == 4:
+        execute_application_4()
+    elif option == 5:
+        print("Goodbye!")
         time.sleep(2)
         exit()
     else:
-        print("Opción incorrecta. Por favor, elige una opción válida.")
-        menu_ejecucion()
+        print("Incorrect option. Please choose a valid option.")
+        execution_menu()
 
+# Main function for the script
 def main():
     print(hacker_art)
-    print("Bienvenido al Menú Hacker:")
-    print("1. Instalar todas las aplicaciones")
-    print("2. Instalar Metasploit")
-    print("3. Menú de ejecución")
-    print("4. Salir")
-    print("5. Instalar gem (necesario para instalar aplicaciones)")
+    print("Welcome to the Hacker Menu:")
+    print("1. Install all applications")
+    print("2. Install Metasploit")
+    print("3. Execution Menu")
+    print("4. Exit")
+    print("5. Install gem (required for installing applications)")
     
-    opcion = int(input("Por favor, elige una opción (1-5): "))
+    option = int(input("Please choose an option (1-5): "))
 
-    if opcion == 1:
-        instalar_aplicaciones()
-    elif opcion == 2:
-        instalar_msfconsole()
-    elif opcion == 3:
-        menu_ejecucion()
-    elif opcion == 4:
-        print("¡Hasta luego!")
+    if option == 1:
+        install_applications()
+    elif option == 2:
+        install_msfconsole()
+    elif option == 3:
+        execution_menu()
+    elif option == 4:
+        print("Goodbye!")
         time.sleep(2)
         exit()
-    elif opcion == 5:
+    elif option == 5:
         url = "https://rubyinstaller.org/"
         webbrowser.open(url)
         time.sleep(2)
         exit() 
        
     else:
-        print("Opción incorrecta. Por favor, elige una opción válida.")
+        print("Incorrect option. Please choose a valid option.")
         main()
 
+# Entry point of the script
 if __name__ == "__main__":
     main()
