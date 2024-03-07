@@ -18,16 +18,29 @@ hacker_art = """
 
 def instalar_msfconsole():
     print("Instalando MSFConsole...")
-    execute("choco install metasploit-framework -y") if platform.system() == "Windows" else execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
-    execute("git clone https://github.com/rapid7/metasploit-framework.git")
-    os.chdir(f"{os.getcwd()}/metasploit-framework/")
-    execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
-    execute("sudo gem install bundler -v 2.4.22") if platform.system() == "Linux" else None
-    execute("sudo apt-get install ruby-full build-essential") if platform.system() == "Linux" else None
-    execute("bundle install") if platform.system() == "Linux" else None
-    execute("sudo gem install mini_portile2 -v 2.8.4") if platform.system() == "Linux" else None
-    execute("sudo service postgresql start") if platform.system() == "Linux" else None
-    execute( "msfdb init")
+
+    if sistema == "Windows":
+        execute("choco install metasploit-framework -y")
+
+        execute("git clone https://github.com/rapid7/metasploit-framework.git")
+        os.chdir(f"{os.getcwd()}/metasploit-framework/")
+        execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
+
+        execute("msfdb init")
+
+    if sistema == "Linux":
+        execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
+        execute("git clone https://github.com/rapid7/metasploit-framework.git")
+        os.chdir(f"{os.getcwd()}/metasploit-framework/")
+        execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
+
+        execute("sudo gem install bundler -v 2.4.22")
+        execute("sudo apt-get install ruby-full build-essential")
+        execute("bundle install")
+        execute("sudo gem install mini_portile2 -v 2.8.4")
+        execute("sudo service postgresql start")
+        
+        execute( "msfdb init")
 
 def instalar_simple():
     sistema = platform.system()

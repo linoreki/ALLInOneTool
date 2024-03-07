@@ -86,11 +86,11 @@ def menu_ejecuccion():
         return
     
     elif opcion == 3:
-        ejecutar_aplicacion_3
+        ejecutar_aplicacion_3()
         return
         
     elif opcion == 4:
-        ejecutar_aplicacion_4
+        ejecutar_aplicacion_4()
         return
     
     elif opcion == 5:
