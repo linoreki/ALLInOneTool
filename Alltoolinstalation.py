@@ -34,6 +34,7 @@ def instalar_msfconsole():
         execute("msfdb init")
 
     if sistema == "Linux":
+        execute("sudo apt-get install git -y")
         execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
         execute("git clone https://github.com/rapid7/metasploit-framework.git")
         os.chdir(f"{os.getcwd()}/metasploit-framework/")
@@ -53,26 +54,27 @@ def instalar_simple():
     if sistema == "Windows":
         print("instalando choco")
         execute("@powershell -NoProfile -ExecutionPolicy unrestricted -Command \"iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))\" && SET PATH=%PATH%;%ALLUSERSPROFILE%chocolateybin")
+        #reinicio de terminal
         print("Instalando Ruby...")
         execute("choco install ruby -y")
+        execute("winget install --id Git.Git -e --source winget")
+        #reinicio de terminal
+        print("Instalando Nmap...")
+        execute("choco install nmap")   
+        print("Instalando WPScan...") 
+        execute("ridk install")
+        execute("gem install wpscan")
+        print("Instalando SearchSploit...")
+        execute("gem install searchsploit")
     elif sistema == "Linux":
         print("Instalando Ruby...")
         execute("sudo apt install ruby -y")
-
-
-    print("Instalando WPScan...")
-    execute("gem install wpscan")
-    
-
-    print("Instalando SearchSploit...")
-    execute("gem install searchsploit")
-
-    print("Instalando Nmap...")
-
-    if sistema == "Windows": 
-        execute("choco install nmap -y")    
-    elif sistema == "Linux": 
-        execute("sudo apt install nmap -y")
+        print("Instalando Nmap...")
+        execute("apt install nmap -y")
+        print("Instalando WPScan...") 
+        execute("gem install wpscan")
+        print("Instalando SearchSploit...")
+        execute("gem install searchsploit")
 
 def instalar_aplicaciones():
         instalar_simple()
