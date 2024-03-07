@@ -25,13 +25,17 @@ def instalar_msfconsole():
     print("Instalando MSFConsole...")
 
     if sistema == "Windows":
-        execute("choco install metasploit-framework -y")
+        #execute("choco source add -n=rapid7 -s=\"https://www.rapid7.com/metasploit-framework-download/\"")
+        #execute("choco install metasploit-framework")
 
         execute("git clone https://github.com/rapid7/metasploit-framework.git")
-        os.chdir(f"{os.getcwd()}\\metasploit-framework\\")
-        execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
+        print("sigue las instrucciones del github")
+        url33 = "https://github.com/rapid7/metasploit-framework"
+        webbrowser.open(url33)           
+        #os.chdir(f"{os.getcwd()}\\metasploit-framework\\")
+        #execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
 
-        execute("msfdb init")
+        #execute("msfdb init")
 
     if sistema == "Linux":
         execute("sudo apt-get install git -y")
@@ -61,11 +65,14 @@ def instalar_simple():
         #reinicio de terminal
         print("Instalando Nmap...")
         execute("choco install nmap")   
-        print("Instalando WPScan...") 
-        execute("ridk install")
-        execute("gem install wpscan")
-        print("Instalando SearchSploit...")
-        execute("gem install searchsploit")
+        # print("Instalando WPScan...") 
+        # execute("ridk install")
+        # execute("ridk exec pacman -S mingw-w64-x86_64-make")
+        # execute("gem update --system")
+        # execute("gem sources")
+        # execute("gem install wpscan --platform ruby")
+        # print("Instalando SearchSploit...")
+        # execute("gem install searchsploit")
     elif sistema == "Linux":
         print("Instalando Ruby...")
         execute("sudo apt install ruby -y")
@@ -97,10 +104,10 @@ def ejecutar_aplicacion_4():
 def menu_ejecucion():
     print(hacker_art)  
     print("Bienvenido al Menú Hacker:")
-    print("1. WPScan")
-    print("2. SearchSploit")
+    print("1. WPScan (solo linux)")
+    print("2. SearchSploit (solo en linux)")
     print("3. Nmap")
-    print("4. Metasploit")
+    print("4. Metasploit (solo en linux)")
     print("5. Salir")
     
     opcion = int(input("Por favor, elige una opción (1-5): "))  
@@ -128,9 +135,8 @@ def menu():
     print("2. Instalar Metasploit")
     print("3. Menú de ejecución")
     print("4. Salir")
-    print("5. Instalar gem manualmente")
     
-    opcion = int(input("Por favor, elige una opción (1-5): "))
+    opcion = int(input("Por favor, elige una opción (1-4): "))
 
     if opcion == 1:
         instalar_aplicaciones()
@@ -142,11 +148,6 @@ def menu():
         print("¡Hasta luego!")
         time.sleep(2)
         exit()
-    elif opcion == 5:
-        url = "https://rubyinstaller.org/"
-        webbrowser.open(url)
-        time.sleep(2)
-        exit() 
     else:
         print("Opción incorrecta. Por favor, elige una opción válida.")
         menu()
