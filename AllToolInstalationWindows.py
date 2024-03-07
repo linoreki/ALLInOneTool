@@ -1,5 +1,6 @@
 import subprocess
 import time
+import webbrowser
 
 def execute(command:str):
     return subprocess.run(command, shell=True)
