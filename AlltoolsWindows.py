@@ -125,7 +125,9 @@ def main():
         exit()
     elif option == 5:
         url = "https://rubyinstaller.org/"
+        url2 = "https://www.youtube.com/watch?v=dB16MQWUU4o"
         webbrowser.open(url)
+        webbrowser.open(url2)
         time.sleep(2)
         exit() 
        
