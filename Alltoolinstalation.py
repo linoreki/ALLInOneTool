@@ -4,9 +4,13 @@ import os
 import platform
 import webbrowser
 
+
+
 def execute(command:str):
     return subprocess.run(command, shell=True)
 
+global sistema
+sistema = platform.system()
 
 hacker_art = """
   _   _      _ _         __        __         _     _ _ 
@@ -18,46 +22,71 @@ hacker_art = """
 """
 
 def instalar_msfconsole():
-    print("Instalando Ruby...")
-    execute("choco install ruby -y")
-
     print("Instalando MSFConsole...")
-    execute("choco install metasploit-framework -y")
 
-    print("Iniciando PostgreSQL...")
-    execute("Start-Service postgresql-x64-13")
+    if sistema == "Windows":
+        execute("choco install metasploit-framework -y")
+
+        execute("git clone https://github.com/rapid7/metasploit-framework.git")
+        os.chdir(f"{os.getcwd()}\\metasploit-framework\\")
+        execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
+
+        execute("msfdb init")
+
+    if sistema == "Linux":
+        execute("sudo apt-get install build-essential zlib1g zlib1g-dev libxml2 libxml2-dev libxslt-dev locate libreadline6-dev libcurl4-openssl-dev git-core autoconf curl postgresqlpostgresql-contrib libpq-dev libapr1 libaprutil1 libsvn1 libpcap-dev ruby -y")
+        execute("git clone https://github.com/rapid7/metasploit-framework.git")
+        os.chdir(f"{os.getcwd()}/metasploit-framework/")
+        execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
+
+        execute("sudo gem install bundler -v 2.4.22")
+        execute("sudo apt-get install ruby-full build-essential")
+        execute("bundle install")
+        execute("sudo gem install mini_portile2 -v 2.8.4")
+        execute("sudo service postgresql start")
+
+        execute( "msfdb init")
 
 def instalar_simple():
+    sistema = platform.system()
+    
+    if sistema == "Windows":
+        print("instalando choco")
+        execute("@powershell -NoProfile -ExecutionPolicy unrestricted -Command \"iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))\" && SET PATH=%PATH%;%ALLUSERSPROFILE%chocolateybin")
+        print("Instalando Ruby...")
+        execute("choco install ruby -y")
+    elif sistema == "Linux":
+        print("Instalando Ruby...")
+        execute("sudo apt install ruby -y")
+
+
     print("Instalando WPScan...")
     execute("gem install wpscan")
-    execute("wpscan --update --disable-tls-checks")
+    
 
     print("Instalando SearchSploit...")
     execute("gem install searchsploit")
 
     print("Instalando Nmap...")
-    execute("choco install nmap -y")
 
-def instalar_windows():
-    instalar_simple()
-    instalar_msfconsole()
+    if sistema == "Windows": 
+        execute("choco install nmap -y")    
+    elif sistema == "Linux": 
+        execute("sudo apt install nmap -y")
 
 def instalar_aplicaciones():
-    sistema = platform.system()
-    if sistema == "Windows":
-        instalar_windows()
-    else:
-        print("El sistema operativo no es compatible con este script.")
+        instalar_simple()
+        instalar_msfconsole()
 
 def ejecutar_aplicacion_1():
-    Url = input("ingrese la url la cual quieres vulnerar: ")
+    Url = input("Ingrese la URL que desea vulnerar: ")
     execute(f"wpscan --url {Url} --random-user-agent --disable-tls-checks")
 
 def ejecutar_aplicacion_2():
     execute("searchsploit")
 
 def ejecutar_aplicacion_3():
-    ip = input("ingrese la ip cual quieres investigar: ")
+    ip = input("Ingrese la IP que desea investigar: ")
     execute(f"nmap -p- --open {ip} -sS --min-rate 5000 -v -n -Pn")
 
 def ejecutar_aplicacion_4():
@@ -97,7 +126,7 @@ def menu():
     print("2. Instalar Metasploit")
     print("3. Menú de ejecución")
     print("4. Salir")
-    print("5.instalar gem (necesario para instalar aplicaciones)")
+    print("5. Instalar gem manualmente")
     
     opcion = int(input("Por favor, elige una opción (1-5): "))
 
@@ -113,18 +142,16 @@ def menu():
         exit()
     elif opcion == 5:
         url = "https://rubyinstaller.org/"
-        url2 = "https://www.youtube.com/watch?v=dB16MQWUU4o"
         webbrowser.open(url)
-        webbrowser.open(url2)
         time.sleep(2)
         exit() 
-       
     else:
         print("Opción incorrecta. Por favor, elige una opción válida.")
         menu()
 
 def main():
     menu()
-
+    
 if __name__ == "__main__":
     main()
+    sistema = platform.system()
