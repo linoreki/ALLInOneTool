@@ -7,6 +7,9 @@ import webbrowser
 def execute(command:str):
     return subprocess.run(command, shell=True)
 
+global sistema
+sistema = platform.system()
+
 hacker_art = """
   _   _      _ _         __        __         _     _ _ 
  | | | | ___| | | ___    \ \      / /__  _ __| | __| | |
@@ -39,7 +42,7 @@ def instalar_msfconsole():
         execute("bundle install")
         execute("sudo gem install mini_portile2 -v 2.8.4")
         execute("sudo service postgresql start")
-        
+
         execute( "msfdb init")
 
 def instalar_simple():
@@ -59,7 +62,11 @@ def instalar_simple():
     execute("gem install searchsploit")
 
     print("Instalando Nmap...")
-    execute("choco install nmap -y") if platform.system() == "Windows" else execute("sudo apt install nmap -y")
+
+    if sistema == "Windows": 
+        execute("choco install nmap -y")    
+    elif sistema == "Linux": 
+        execute("sudo apt install nmap -y")
 
 def instalar_aplicaciones():
     sistema = platform.system()
