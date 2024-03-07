@@ -33,6 +33,7 @@ def instalar_simple():
     sistema = platform.system()
     print("Instalando Ruby...")
     if sistema == "Windows":
+        execute("@powershell -NoProfile -ExecutionPolicy unrestricted -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%chocolateybin")
         execute("choco install ruby -y")
     elif sistema == "Linux":
         execute("sudo apt install ruby -y")
