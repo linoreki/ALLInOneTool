@@ -1,8 +1,5 @@
 import subprocess
 import time
-import os 
-import platform
-import webbrowser
 
 def execute(command:str):
     return subprocess.run(command, shell=True)
@@ -111,4 +108,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-    sistema = platform.system()
