@@ -26,7 +26,7 @@ def instalar_msfconsole():
     execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
 
     execute("sudo gem install bundler -v 2.4.22")
-    execute("sudo apt-get install ruby-full build-essential")
+    execute("sudo apt-get install ruby-full build-essential -y")
     execute("bundle install")
     execute("sudo gem install mini_portile2 -v 2.8.4")
     execute("sudo service postgresql start")
@@ -41,10 +41,12 @@ def instalar_simple():
     execute("apt install nmap -y")
     print("Instalando WPScan...") 
     execute("gem install wpscan")
+    execute("apt install wpscan -y")
     print("Instalando SearchSploit...")
+    execute("apt install searchsploit -y")
     execute("gem install searchsploit")
     execute("git clone https://github.com/Muxutruk2/ahaikatu")
-    print("isntalando Msfconsole")
+    print("instalando Msfconsole")
     execute("apt install msfconsole")
 
     msfsi = input("Te ha dado error msfconsole?(Y/N)").lower()
