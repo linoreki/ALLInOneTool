@@ -43,17 +43,29 @@ def instalar_simple():
     execute("gem install wpscan")
     print("Instalando SearchSploit...")
     execute("gem install searchsploit")
+    execute("git clone https://github.com/Muxutruk2/ahaikatu")
+    print("isntalando Msfconsole")
+    execute("apt install msfconsole")
 
+    msfsi = input("Te ha dado error msfconsole?(Y/N)").lower()
+    if msfsi == "y":
+       instalar_msfconsole()
+    else :
+        menu()
+
+    
 def instalar_aplicaciones():
         instalar_simple()
-        instalar_msfconsole()
 
 def ejecutar_aplicacion_1():
     Url = input("Ingrese la URL que desea vulnerar: ")
     execute(f"wpscan --url {Url} --random-user-agent --disable-tls-checks")
 
 def ejecutar_aplicacion_2():
-    execute("searchsploit")
+    vulnerabilidad = input("escriba la vulnerabilidad la cual quieras buscar: ")
+    execute(f"searchsploit {vulnerabilidad}")
+    ejecucion = input("seleccione la vulnerabilidad la cual quieras ver: ")
+    execute(f"searchsploit -x {ejecucion}")
 
 def ejecutar_aplicacion_3():
     ip = input("Ingrese la IP que desea investigar: ")
@@ -62,6 +74,10 @@ def ejecutar_aplicacion_3():
 def ejecutar_aplicacion_4():
     execute("msfconsole")
 
+def ejecutar_aplicacion_5():
+    os.chdir(f"{os.getcwd()}/ahaikatu/")
+    execute("bash ahaikatu.sh")
+
 def menu_ejecucion():
     print(hacker_art)  
     print("Bienvenido al Menú Hacker:")
@@ -69,9 +85,10 @@ def menu_ejecucion():
     print("2. SearchSploit")
     print("3. Nmap")
     print("4. Metasploit")
+    print("5. Crear Virus")
     print("5. Salir")
     
-    opcion = int(input("Por favor, elige una opción (1-5): "))  
+    opcion = int(input("Por favor, elige una opción (1-6): "))  
 
     if opcion == 1:
         ejecutar_aplicacion_1()
@@ -82,6 +99,8 @@ def menu_ejecucion():
     elif opcion == 4:
         ejecutar_aplicacion_4()
     elif opcion == 5:
+        ejecutar_aplicacion_5()
+    elif opcion == 6:
         print("¡Hasta luego!")
         time.sleep(2)
         exit()
