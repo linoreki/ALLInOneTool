@@ -28,6 +28,7 @@ def instalar_msfconsole():
     execute("sudo gem install bundler -v 2.4.22")
     execute("sudo apt-get install ruby-full build-essential -y")
     execute("bundle install")
+    execute("gem install pg -v '1.5.4' --source 'https://rubygems.org/'")
     execute("sudo gem install mini_portile2 -v 2.8.4")
     execute("sudo service postgresql start")
 
@@ -46,7 +47,7 @@ def instalar_simple():
     execute("snap install searchsploit")
     execute("git clone https://github.com/Muxutruk2/ahaikatu")
     print("instalando Msfconsole")
-    execute("apt install msfconsole")
+    execute("sudo snap install metasploit-framework")
 
     msfsi = input("Te ha dado error msfconsole?(Y/N)").lower()
     if msfsi == "y":
