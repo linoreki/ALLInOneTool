@@ -44,6 +44,7 @@ def instalar_simple():
         execute("sudo apt update")  
         execute("sudo apt install mono-devel")
         execute("apt-get install postgresql-12")
+        verficacion_msf()
     
     elif system == "2":
         instalar_todo()
@@ -56,7 +57,7 @@ def instalar_simple():
         execute("wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -")
         execute("sudo apt-get update")
         execute("sudo apt-get -y install postgresql")
-
+        verficacion_msf()
     elif system == "3":
         instalar_todo()
         execute("yum install postgresql-server")
@@ -66,11 +67,19 @@ def instalar_simple():
         execute("echo \"deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main\" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list")
         execute("sudo apt update")  
         execute("sudo apt install mono-devel")
-
+        verficacion_msf()
     else :
         print("ingrese una opcion valida")
         instalar_simple()
-    
+
+
+def verficacion_msf():
+    msfsi = input("Te ha dado error msfconsole?(Y/N)").lower()
+    if msfsi == "y":
+       instalar_msfconsole()
+    else :
+        menu()
+
 def instalar_todo():          
     print("Instalando Ruby...")
     execute("sudo apt install ruby -y")
@@ -85,11 +94,6 @@ def instalar_todo():
     print("instalando Msfconsole")
     execute("sudo snap install metasploit-framework")
 
-    msfsi = input("Te ha dado error msfconsole?(Y/N)").lower()
-    if msfsi == "y":
-       instalar_msfconsole()
-    else :
-        menu()
 
     
 def instalar_aplicaciones():
