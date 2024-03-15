@@ -24,7 +24,6 @@ def instalar_msfconsole():
     execute("git clone https://github.com/rapid7/metasploit-framework.git")
     os.chdir(f"{os.getcwd()}/metasploit-framework/")
     execute("sudo bash -c 'for MSF in $(ls msf*) do ln -s /usr/local/src/metasploit-framework/$MSF /usr/local/bin/$MSF'")
-
     execute("sudo gem install bundler -v 2.4.22")
     execute("sudo apt-get install ruby-full build-essential -y")
     execute("sudo bundle install")
@@ -35,7 +34,44 @@ def instalar_msfconsole():
     execute( "msfdb init")
 
 def instalar_simple():
+    system = input("Que distro usas? 1.Debian 2.Ubuntu 3.RedHat (sino es ninguna de estas prueba con ubuntu)")
+    
+    if system == "1": 
+        instalar_todo()
+        execute("sudo apt install dirmngr ca-certificates gnupg")
+        execute("sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF")
+        execute("echo \"deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/debian stable-buster main\" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list")
+        execute("sudo apt update")  
+        execute("sudo apt install mono-devel")
+        execute("apt-get install postgresql-12")
+    
+    elif system == "2":
+        instalar_todo()
+        execute("sudo apt install ca-certificates gnupg")
+        execute("sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF")
+        execute("echo \"deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main\" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list")
+        execute("sudo apt update")  
+        execute("sudo apt install mono-devel")
+        execute("sudo sh -c 'echo \"deb https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main\" > /etc/apt/sources.list.d/pgdg.list'")
+        execute("wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -")
+        execute("sudo apt-get update")
+        execute("sudo apt-get -y install postgresql")
 
+    elif system == "3":
+        instalar_todo()
+        execute("yum install postgresql-server")
+        execute("dnf install postgresql-server")
+        execute("sudo apt install ca-certificates gnupg")
+        execute("sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF")
+        execute("echo \"deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main\" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list")
+        execute("sudo apt update")  
+        execute("sudo apt install mono-devel")
+
+    else :
+        print("ingrese una opcion valida")
+        instalar_simple()
+    
+def instalar_todo():          
     print("Instalando Ruby...")
     execute("sudo apt install ruby -y")
     print("Instalando Nmap...")
@@ -48,10 +84,7 @@ def instalar_simple():
     execute("sudo git clone https://github.com/Muxutruk2/ahaikatu")
     print("instalando Msfconsole")
     execute("sudo snap install metasploit-framework")
-    execute("sudo apt install ca-certificates gnupg")
-    execute("sudo gpg --homedir /tmp --no-default-keyring --keyring /usr/share/keyrings/mono-official-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF")
-    execute("echo \"deb [signed-by=/usr/share/keyrings/mono-official-archive-keyring.gpg] https://download.mono-project.com/repo/ubuntu stable-focal main\" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list")
-    execute("sudo apt update")
+
     msfsi = input("Te ha dado error msfconsole?(Y/N)").lower()
     if msfsi == "y":
        instalar_msfconsole()
@@ -77,11 +110,11 @@ def ejecutar_aplicacion_3():
     execute(f"nmap -p- --open {ip} -sS --min-rate 5000 -v -n -Pn")
 
 def ejecutar_aplicacion_4():
-    execute("msfconsole")
+    execute("sudo msfconsole")
 
 def ejecutar_aplicacion_5():
     os.chdir(f"{os.getcwd()}/ahaikatu/")
-    execute("bash ahaikatu.sh")
+    execute("sudo bash ahaikatu.sh")
 
 def menu_ejecucion():
     print(hacker_art)  
